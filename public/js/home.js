@@ -34,9 +34,7 @@ socket.on('welcome', function(data) {
 
 //Get message from server.
 socket.on('update', (data) => {
- let para = document.createElement("div");
-if(data.msg == "")
- return;
+  let para = document.createElement("div");
 
 if(data.type == "Text") {
   $("#messages").append(
@@ -94,14 +92,14 @@ socket.on('updateComments',(data) =>
 
 function changeView() {
   if ($("input:radio[name='type']:checked").val() == "Text") {
-    //console.log("hiii1");
+    document.getElementById("postC2").style.visibility = "visible";
     document.getElementById("postC").style.visibility = "visible";
     document.getElementById("uploader").style.visibility = "hidden";
     document.getElementById("uploader2").style.visibility = "hidden";
   }
   else if ($("input:radio[name='type']:checked").val() == "Image") {
-    console.log("hiii2");
     document.getElementById("postC").style.visibility = "hidden";
+    document.getElementById("postC2").style.visibility = "hidden";
     document.getElementById("uploader").style.visibility = "visible";
     document.getElementById("uploader2").style.visibility = "visible";
   }
@@ -170,12 +168,26 @@ function uploadSuccess(data) {
       else {
         if (type == "Text") {
           msg = $('#postT').val();
+          bodyMSG = $('#postC').val();
 
-          bodyMSG = $('#postC').text();
-          console.log(bodyMSG);
+          if(msg == "") {
+            alert ("title is required");
+            return;
+          }
+          else if(bodyMSG == "") {
+            alert ("message is required");
+            return;
+          }
+
         }
         else if (type == "Image") {
           msg = data.filename2;
+
+          if(msg == "empty.webp") {
+            alert ("image is required");
+            return;
+          }
+
         }
 
         $.ajax({
@@ -188,6 +200,9 @@ function uploadSuccess(data) {
           dataType: "json"
         });
         socket.emit('update', {'type':type, 'msg': msg,'user':user,'color':color,'bodyMSG':bodyMSG});
+        $('#postT').val("");
+        $('#postC').val("");
+        $('#uploader').val("");
       }
     } ,
     dataType: "json"
@@ -219,6 +234,7 @@ if(text != ""){
               dataType: "json"
             });
         socket.emit('updateComments', {'text': text,'messageID':id,'user': user});
+        $("#"+"t"+id).val("");
       }
     } ,
     dataType: "json"
