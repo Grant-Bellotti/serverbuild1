@@ -59,7 +59,7 @@ else if(data.type == "Image") {
   $("#messages").append(
     "<div class='postBlock'>" +
     "<p class='imageUser'>" + data.user + "</p>" +
-    "<img id='display' class='postli' style='background-color:'"+ data.color +";' src='" + "images/" + data.msg + "' height='150' width='150'>" +
+    "<img id='display' class='postli'" + 'style="background-color:'+ data.color +';" src="images/' + data.msg +'"height="150" width="150">' +
     "<div>" +
     "<button type=button id ="+ messageid+ " class='collapsible' " + 'style="background-color:'+ data.color + ';">' + 'Comments</button>'+
 
