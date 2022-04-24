@@ -121,7 +121,7 @@ router.get('/getstoredMessages', function(req, res){
       if(type == "Text") {
         chat += (
         '<div class="postBlock">' +
-        '<p class="postli" style="background-color:'+ newMessage.color +';">' + newMessage.message + " " + newMessage.user + '<br>'+'<body>'+newMessage.realMessage+'</body>'+'</p>'+
+        '<p class="postli" style="background-color:'+ newMessage.color +';">' + newMessage.message + ": " + newMessage.user + '<br>'+'<body>'+newMessage.realMessage+'</body>'+'</p>'+
         '<div>' +
 
         "<button type=button id='" + newMessage.id + "'class='collapsible' " + 'style="background-color:'+ newMessage.color + ';">' + 'Comments</button>'+

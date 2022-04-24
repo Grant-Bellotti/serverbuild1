@@ -41,7 +41,7 @@ if(data.msg == "")
 if(data.type == "Text") {
   $("#messages").append(
     '<div class="postBlock">' +
-    '<p class="postli" style="background-color:'+ data.color +';">' + data.msg + " " + data.user + '<br>'+'<body>'+data.bodyMSG+'</body>'+'</p>'+
+    '<p class="postli" style="background-color:'+ data.color +';">' + data.msg + ": " + data.user + '<br>'+'<body>'+data.bodyMSG+'</body>'+'</p>'+
     '<div>'+
     "<button type=button id ="+ messageid+ " class='collapsible' " + 'style="background-color:'+ data.color + ';">' + 'Comments</button>'+
 
@@ -213,8 +213,8 @@ if(text != ""){
               type: "POST",
               data: {text: text,messageID:id,user:user},
               success: function(data){
-               
-                
+
+
               } ,
               dataType: "json"
             });
